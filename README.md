@@ -258,16 +258,7 @@ DATABASE_URL=postgresql+asyncpg://...
 | EfficientNet-B4 | CIFAKE (100K images) | 0.938 | 0.912 |
 | **Final Ensemble** | All combined | **0.961** | **0.934** |
 
----
-
-## 👨‍💻 Author
-
-Built as a portfolio project demonstrating:
-- End-to-end ML engineering (data → training → deployment)
-- Multi-modal AI (text + image + tabular)
-- Explainable AI with SHAP
-- Production-grade FastAPI backend
-- Animated React frontend with dark-mode design system
+--
 
 ---
 
