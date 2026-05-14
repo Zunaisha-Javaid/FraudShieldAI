@@ -4,6 +4,19 @@
 
 > Detect financial fraud, fake news, and document forgery in real-time using an ensemble of XGBoost, BERT, and EfficientNet models — with a beautiful animated React chatbot interface.
 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/08d0ad5c-4ade-433d-ab92-d6db6027e065" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/51ed54e6-a1bd-45bc-a97c-353417ff9023" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/6fc53ed8-adce-418d-a8c4-6761ce375f01" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/fd2730b7-ed64-49c1-b0fd-e366fa970631" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a44eac14-504c-49b5-b889-424e38d6c53a" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/4fc6afff-d4d5-4d67-ba34-1a078474bbd4" />
+
+
+
+
+
+
+
 ---
 
 ## ✨ Features
@@ -61,18 +74,18 @@ docker-compose up --build
 
 ## 🤖 Training the Models
 
+> **Note:** All training scripts include synthetic data fallbacks so you can run and test without downloading datasets.
+
 ### 1. Transaction Fraud (XGBoost + LightGBM Ensemble)
 
 **Dataset:** [IEEE-CIS Fraud Detection](https://www.kaggle.com/c/ieee-fraud-detection/data)
 
 ```bash
-# Download dataset to ml/data/
-# Then run:
 cd ml
 python train_transaction_model.py
 ```
 
-Expected results: **ROC-AUC > 0.92** | **F1 > 0.88**
+Expected: **ROC-AUC > 0.92** | **F1 > 0.88**
 
 ---
 
@@ -81,12 +94,11 @@ Expected results: **ROC-AUC > 0.92** | **F1 > 0.88**
 **Dataset:** [LIAR Dataset](https://www.cs.ucsb.edu/~william/data/liar_dataset.zip) or [SMS Spam](https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset)
 
 ```bash
-# Download dataset to ml/data/
 cd ml
 python train_text_model.py
 ```
 
-Expected results: **Accuracy > 85%** | **F1 > 0.83**
+Expected: **Accuracy > 85%** | **F1 > 0.83**
 
 ---
 
@@ -100,11 +112,7 @@ cd ml
 python train_image_model.py
 ```
 
-Expected results: **Accuracy > 90%** | **AUC > 0.93**
-
----
-
-> **Note:** All training scripts include synthetic data fallbacks so you can run and test without downloading datasets.
+Expected: **Accuracy > 90%** | **AUC > 0.93**
 
 ---
 
@@ -165,11 +173,11 @@ curl -X POST http://localhost:8000/analyze \
 
 ### POST `/analyze/bulk`
 
-Analyze a CSV file with multiple records.
+Upload a CSV file with multiple records for batch analysis.
 
 ### GET `/cases/`
 
-Get all analyzed cases (with pagination).
+Get all analyzed cases with pagination.
 
 ### GET `/cases/stats/summary`
 
@@ -177,27 +185,14 @@ Get aggregate fraud statistics.
 
 ---
 
-## 🎨 UI Screenshots
+## 📊 Model Performance
 
-| Screen | Description |
-|---|---|
-| **Landing** | Animated hero with stats and feature cards |
-| **Chat** | Dark chatbot with streaming analysis results |
-| **Dashboard** | Charts: timeline, pie, risk, model accuracy |
-| **History** | Searchable case log with expand/collapse |
-| **Bulk** | CSV drag-drop with live progress tracking |
-
----
-
-## 🛠️ Tech Stack
-
-**Frontend:** React 18 · Framer Motion · Recharts · Lucide Icons · Syne/DM Sans fonts
-
-**Backend:** FastAPI · SQLAlchemy · Pydantic · Uvicorn · SQLite/PostgreSQL
-
-**ML:** XGBoost · LightGBM · HuggingFace Transformers (BERT) · PyTorch · timm (EfficientNet) · SHAP
-
-**DevOps:** Docker · Docker Compose · Nginx · GitHub Actions
+| Model | Dataset | ROC-AUC | F1 Score |
+|---|---|---|---|
+| XGBoost + LightGBM | IEEE-CIS (590K rows) | 0.924 | 0.891 |
+| BERT-Fraud-v2 | LIAR + SMS Spam | — | 0.857 |
+| EfficientNet-B4 | CIFAKE (100K images) | 0.938 | 0.912 |
+| **Final Ensemble** | All combined | **0.961** | **0.934** |
 
 ---
 
@@ -230,6 +225,17 @@ fraudshield/
 
 ---
 
+## 🛠️ Tech Stack
+
+| Layer | Technologies |
+|---|---|
+| **Frontend** | React 18 · Framer Motion · Recharts · Lucide Icons · Syne/DM Sans |
+| **Backend** | FastAPI · SQLAlchemy · Pydantic · Uvicorn · SQLite/PostgreSQL |
+| **ML** | XGBoost · LightGBM · HuggingFace Transformers · PyTorch · timm · SHAP |
+| **DevOps** | Docker · Docker Compose · Nginx · GitHub Actions |
+
+---
+
 ## 🌐 Deployment
 
 ### Vercel (Frontend)
@@ -249,16 +255,15 @@ DATABASE_URL=postgresql+asyncpg://...
 
 ---
 
-## 📊 Model Performance
+## 🤝 Contributing
 
-| Model | Dataset | ROC-AUC | F1 Score |
-|---|---|---|---|
-| XGBoost+LightGBM Ensemble | IEEE-CIS (590K rows) | 0.924 | 0.891 |
-| BERT-Fraud-v2 | LIAR + SMS Spam | — | 0.857 |
-| EfficientNet-B4 | CIFAKE (100K images) | 0.938 | 0.912 |
-| **Final Ensemble** | All combined | **0.961** | **0.934** |
+Pull requests are welcome! For major changes, please open an issue first to discuss what you'd like to change.
 
---
+---
+
+## 📄 License
+
+[MIT](LICENSE)
 
 ---
 
